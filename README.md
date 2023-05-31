@@ -32,8 +32,8 @@ The project's folder structure is organized as follows:
 
 
 - `index.html`: The main HTML file that represents the structure of the website.
-- `css/`: The folder containing CSS stylesheets.
-- `js/`: The folder containing JavaScript files.
+- `styles/`: The folder containing CSS stylesheets.
+- `scripts/`: The folder containing JavaScript files.
 - `images/`: The folder containing images used in the website.
 - `README.md`: The markdown file you're currently reading.
 
