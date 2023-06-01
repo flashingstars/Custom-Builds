@@ -119,7 +119,7 @@ body {
 }
 
 .builders-image {
-    background-image: url('./images/Builders.jpg');
+    background-image: url('../images/Builders.jpg');
     background-size: cover;
     background-position: center;
     height: 800px;
@@ -144,4 +144,5 @@ p {
 }
 
 .company-info {
-    background-color: #f8f8f8
+    background-color: #f8f8f8;
+}
