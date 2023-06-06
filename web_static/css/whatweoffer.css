@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+html, body{
+    background: white;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.header-container{
+    background: rgb(128, 26, 26);
+    width: 100%;
+    box-shadow: 0px 1px 1px black;
+    justify-content: space-between;
+    display: flex;
+    padding: 20px;
+}
+.logo img {
+    height: 100px;
+}
+
+.title{
+    flex: 1;
+    text-align: center;
+}
+
+.the-title {
+    font-size: 20px;
+}
+
+.buttons ul {
+    list-style-type: none; /*remove default list styles */
+    padding: 0;
+    margin: 0;
+}
+
+.buttons li {
+    display: inline-block;
+}
+
+.rectangular-button {
+    display: inline-block;   
+    padding: 10px 20px;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    color: #000000;
+    background-color: rgb(148, 153, 156);
+    margin-right: 15px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.rectangular-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 3fr));
+    grid-gap: 10px;
+    background-color: #deb887;
+  }
+  
+  .row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+  
+  .row img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .row content {
+    position: absolute;
+    bottom: -10px;
+    left: 100px;
+    width: 100%;
+    padding: 0px;
+    margin: 0;
+  }
+
+  #footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(148, 153, 156);
+    padding: 20px;
+  }
+  
+  .footer_title {
+    flex: 1;
+    display: inline-block;
+  }
+
+  .socials_icons {
+    display: inline-block;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .socials_icons img {
+    height: 50px;
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+
+  .links_box {
+    display: inline-block;
+    padding: 1px 40px;
+    border: 1px solid black;
+    background-color: rgb(128, 26, 26);
+    border-radius: 14px;
+    margin-left: 400px;
+  }
