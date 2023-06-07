@@ -99,16 +99,17 @@ section {
 }
 
 #services h2 {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .service {
-  width: 30%;
+  width: 50%;
   display: inline-block;
   padding: 0 1rem;
   text-align: center;
-  vertical-align: bottom;
-  margin-bottom: 1rem;
+  vertical-align: top;
+  margin-bottom: 2rem;
+  position: static;
 }
 
 .service img {
@@ -150,21 +151,47 @@ footer nav ul li a {
   color: #fff;
 }
 
+#about {
+  text-align: center;
+}
+
+#about img {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+a {
+  color: black;
+}
+
+#contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#contact h2{
+  flex: 1;
+  display: inline-block;
+}
+
+.socials_icons {
+  display: inline-block;
+  align-items: center;
+  gap: 10px;
+}
+
+.socials_icons img {
+  height: 50px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: center;
-  }
-
-  nav ul {
-    text-align: center;
-    margin-top: 10px;
-  }
-
-  nav ul li {
-    display: block;
-    margin-bottom: 10px;
   }
 
   header img {
@@ -173,13 +200,6 @@ footer nav ul li a {
 
   main {
     padding: 20px;
-  }
-
-  form input,
-  form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
   }
 
   footer nav ul li {
