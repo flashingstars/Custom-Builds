@@ -46,9 +46,11 @@ Feel free to explore the code and make any modifications to suit your needs!
 
 I had help from my peers:
 
--- Myra Jarenga
--- Laban Rotich
--- Bravin Atonya
+- Myra Jarenga
+
+- Laban Rotich
+
+- Bravin Atonya
 
 ---
 
