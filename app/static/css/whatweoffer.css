@@ -24,6 +24,7 @@ html, body{
     display: flex;
     padding: 20px;
 }
+
 .logo img {
     height: 100px;
 }
@@ -93,7 +94,7 @@ html, body{
     margin: 0;
   }
 
-  #footer {
+#footer {
     display: flex;
     align-items: center;
     justify-content: space-between;

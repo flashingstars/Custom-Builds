@@ -5,47 +5,52 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Login/Sign up</title>
-        <link rel="stylesheet" href="../web_static/css/login.css">
+        <link rel="stylesheet" href="../static/css/login.css">
     </head>
     <body>
-        <div class="login-form">
-            <div class="login">
-                <h1> Login</h1>
+        <header>
+            <div class="header-container">
+                <div class="logo">
+                    <img src="../static/images/logo.PNG" alt="Custom Builds">
+                </div>
+                <div class="title">
+                        <h1> Log in /Sign Up </h1>
+                </div>
+        </header>
 
-                <div class="inputbox">
-                    <div class="username-text">
-                        <h4> Username or email address *<h4>
-                    </div>
-                    <input type="text" required>
-                </div>
-                <div class="inputbox">
-                    <div class="password-text">
-                        <h4>Password *<h4>
-                    </div>
-                    <input type="password" required>
-                </div>
-                <br>
-                <div class="inputbox">
-                    <input type="submit" value="Login" id="btn" required>
-                </div>
+        <main>
+            <div class="login-form">
+                <div class="login">
+                    <h1> Login</h1>
 
-                <br>
-        </div>
+                    <div class="inputbox">
+                        <div class="username_text">
+                            <h4> Username or email address *<h4>
+                        </div>
+                        <input type="text" required>
+                    </div>
+                    <div class="inputbox">
+                        <div class="password-text">
+                            <h4>Password *<h4>
+                        </div>
+                        <input type="password" required>
+                    </div>
+                    <br>
+                    <div class="inputbox">
+                        <input type="submit" value="Login" id="btn" required>
+                    </div>
+                    <br>
+                </div>
+            </div>
 
 
         <div class="sign-upForm">
             <div class="sign-up">
                 <h2> <b> REGISTER </b> </h2>
                 <h3> DON'T HAVE AN ACCOUNT? CREATE ONE HERE</h3>
-                <input type="submit" value="Sign Up" id="btn">
+                <input type="submit" value="Sign Up" id="btn" onclick="window.location.href='signup.html'">
             </div>
         </div>
-
-        <br>
-
-
-        <div class="bottom-content">
-            <a href="#">Forgot your password?</a>
-        </div>
+    </main>
     </body>
 </html>

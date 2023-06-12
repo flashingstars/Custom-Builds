@@ -1,0 +1,37 @@
+.header-container{
+    background: rgb(128, 26, 26);
+    box-shadow: 0px 1px 1px black;
+    justify-content: space-between;
+    display: flex;
+    padding: 20px;
+}
+
+.title{
+    flex: 1;
+    text-align: center;
+}
+
+.logo img {
+    height: 100px;
+}
+
+ul {
+    list-style: none;
+}
+
+.rectangular-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #0a0a0a;
+    border-radius: 4px;
+    color: #070707;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    background-color: #fff;
+}
+
+.rectangular-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
