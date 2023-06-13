@@ -71,7 +71,7 @@ body {
 }
 
 /* Show dropdown content when dropdown toggle is clicked */
-.dropdown.show .dropdown-content {
+.dropdown-content.show {
     display: block;
 }
 
