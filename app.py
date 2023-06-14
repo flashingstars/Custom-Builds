@@ -61,7 +61,7 @@ def submit():
 	comment = request.form['comment']
 
 	# Store the comment in the database
-	conn = sqlite3.connect(DB_NAME)
+	conn = sqlite3.connect()
 	c = conn.cursor()
 	c.execute("INSERT INTO review Values (?, ?, ?)", (name, email, comment))
 	conn.commit()
