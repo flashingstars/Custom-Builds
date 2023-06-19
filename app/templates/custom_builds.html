@@ -25,17 +25,46 @@
                 </ul>
             </div>
         </div>
-
     </header>
     <main class="main-container">
         <div class="custom_body">
             <div class="custom_body_1">
+                <h1>UPLOADED ORDER</h1>
+                <div class="image-container">
+                    <img src="" alt="Uploaded Photo 1">
+                </div>
+            </div>            
+            <div class="custom_body_5">
+                <h1>MEASUREMENTS & COLOR SPECIFICATION</h1>
                 <form>
-                    <input type="file" id="image-input" accept="image/*">
-                    <div id="image-preview"></div>
+                    <label for="measurements">Measurements:</label>
+                    <input type="text" id="measurements" name="measurements" required>
+                    <label for="color-specification">Color Specification:</label>
+                    <input type="text" id="color-specification" name="color-specification" required>
                 </form>
             </div>
+
             <div class="custom_body_2">
+                <h1>PROGRESS PHOTOS</h1>
+                <div class="progress-photos-container">
+                    <div class="image-container">
+                        <img src="" alt="Progress Photo 1">
+                    </div>
+                    <div class="image-container">
+                        <img src="" alt="Progress Photo 2">
+                    </div>
+                </div>
+            </div><br>
+
+            <div class="custom_body_4">
+                <h1>COMPLETED PHOTO</h1>
+                <div class="image-container">
+                    <img src="" alt="Completed Photo">
+                </div>
+            </div>
+            <br>
+            
+            <div class="custom_body_6">
                 <h1>DATES TO NOTE</h1>
                 <table>
                     <tr>
@@ -43,36 +72,43 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Date of completion:</th>
+                        <th>Update Dates:</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Update Date:</th>
+                        <th></th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Date of completion:</th>
                         <td></td>
                     </tr>
                 </table>
             </div>
-            <div class="custom_body_3">
-                <h1> PAYMENT DETAILS</h1>
+            <div class="custom_body_7">
+                <h1>PAYMENT DETAILS</h1>
                 <table>
+                    <tr>
+                        <th>Total Amount:</th>
+                        <td></td>
+                    </tr>
                     <tr>
                         <th>Deposit:</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Delivery fee:</th>
+                        <th>Delivery Fee:</th>
                         <td></td>
                     </tr>
                     <tr>
-                        <th>Payment on delivery:</th>
+                        <th>Payment on Delivery:</th>
                         <td></td>
                     </tr>
                 </table>
                 <img src="../static/images/mpesa logo.jpeg" alt="mpesa">
             </div>
         </div>
-        <a href="../templates/review.html" class="rectangular-button secondary-button"> Tell your story </a>  
+        <a href="../templates/review.html" class="round-button secondary_button"> Tell your story </a>  
     </main>
-    <script src="../static/scripts/image_upload.js"></script>
 </body>
 </html>
