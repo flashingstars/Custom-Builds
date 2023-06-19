@@ -10,30 +10,50 @@
     </head>
     <body>
         <header>
-            <div class="header-container">
-                <div class="logo">
-                    <img src="../static/images/logo.PNG" alt="Custom Builds">
-                </div>
-                <div class="title">
-                    <div class="the_title">
-                        <h1> GREAT OFFERS FROM OUR SELECT PIECES</h1>
-                        <h4> Christmas is come... early</h4>
+                <div class="header-container">
+                    <div class="logo">
+                        <img src="../static/images/logo.PNG" alt="Custom Builds">
                     </div>
+                    <div class="title">
+                        <div class="the_title">
+                            <h1> GREAT OFFERS FROM OUR SELECT PIECES</h1>
+                            <h4> Christmas is come... early</h4>
+                        </div>
 
-                    <div class="buttons">
-                        <ul>
-                            <li> <a href="customer_stories.html" class="rectangular-button"> Customer Stories </a></li>
-                            <li> <a href="whatweoffer.html#footer" class="rectangular-button"> Contact us </a></li>
-                            <li> <a href="whatweoffer.html" class="rectangular-button"> Back </a></li>
-                        </ul>
+                        <div class="buttons">
+                            <ul>
+                                <li> <a href="customer_stories.html" class="rectangular-button"> Customer Stories </a></li>
+                                <li> <a href="whatweoffer.html#footer" class="rectangular-button"> Contact us </a></li>
+                                <li> <a href="whatweoffer.html" class="rectangular-button"> Back </a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
-        <main>
-            <div class="container">
-                <div class="card">
-                    <img src="../static/images/on_offer_1.jpg" alt="First_on_offer">
+            </header>
+        
+            <main>
+                <form action="/add_photo" method="POST" enctype="multipart/form-data" class="upload-form">
+                    <label for="photo"> Photo: </label>
+                    <input type="file" name="photo" id="photo" accept="image/*" required>
+
+                    <label for="heading"> Heading: </label>
+                    <input type="text" name="heading" id="Heading" placeholder="heading" required>
+
+                    <label for="description"> Description: </label>
+                    <input type="text" name="description" id="description" placeholder="Description" required>
+
+                    <label for="price"> Price: </label>
+                    <input type="number" name="price"  id="price" step="0.01" placeholder="Price" required>
+
+                    <label for="amount_saved"> Amount saved: </label>
+                    <input type="number" name="amount_saved"  id="amount_saved" step="0.01" placeholder="Amount Saved">
+
+                    <input type="submit" value="Upload">
+                </form>
+                  
+                <div class="container">
+                    <div class="card">
+                        <img src="../static/images/on_offer_1.jpg" alt="First_on_offer">
                     <h2> Pink flamingo </h2>
                     <p> Fluffy feathery flamingo seat with unique flamingo legs </p>
                     <div class="price"> Ksh 45,000 </div>

@@ -26,7 +26,6 @@ class Photo(Base):
     description = Column(String(200))
     price = Column(Float, nullable=False)
 
-
     likes = relationship("Like", back_populates="photo")
     orders = relationship("Order", back_populates="photo")
 
@@ -49,20 +48,20 @@ class CustomerStory(Base):
     reviews_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     username = Column(String(150), unique=True, nullable=False)
     email = Column(String(128), unique=True, nullable=False)
-    comment = Column(String(10,000), nullable=False)
+    comment = Column(String(10000), nullable=False)
 
-    user = relationship("User", back_populates="customer_stories")
+    user = relationship("User", back_populates="user_stories")
     reviews = relationship("Review", back_populates="customer_stories")
 
 class Like(Base):
     __tablename__ = 'likes'
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     photo_id = Column(Integer, ForeignKey('photos.id'), nullable=False)
 
     user = relationship("User", back_populates="likes")
-    photos = relationship("Photo", back_populates="likes")
+    photo = relationship("Photo", back_populates="likes")
 
 class Admin(Base):
     __tablename__ = 'admins'
@@ -94,9 +93,6 @@ class AdminOrder(Base):
     admin = relationship("Admin", back_populates="admin_orders")
     order = relationship("Order", back_populates="admin_orders")
 
-
-
-
 class Review(Base):
     __tablename__ = 'reviews'
 
@@ -104,6 +100,6 @@ class Review(Base):
     username = Column(String(150), unique=True, nullable=False)
     email = Column(String(128), unique=True, nullable=False)
     comment = Column(String(10000), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
 
     users = relationship("User", back_populates="reviews")

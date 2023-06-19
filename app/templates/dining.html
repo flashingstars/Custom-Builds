@@ -30,6 +30,22 @@
     </div>
   </header>
   <main>
+    <form action="/add_photo" method="POST" enctype="multipart/form-data" class="upload-form">
+      <label for="photo"> Photo: </label>
+      <input type="file" name="photo" id="photo" accept="image/*" required>
+
+      <label for="heading"> Heading: </label>
+      <input type="text" name="heading" id="Heading" placeholder="heading" required>
+
+      <label for="description"> Description: </label>
+      <input type="text" name="description" id="description" placeholder="Description" required>
+
+      <label for="price"> Price: </label>
+      <input type="number" name="price"  id="price" step="0.01" placeholder="Price" required>
+
+      <input type="submit" value="Upload">
+  </form>
+  
     <div class="container">
       <div class="card">
         <img src="../static/images/Dining.jpg" alt="First_on_offer">

@@ -64,6 +64,43 @@ html, body{
     display: inline-block;
 }
 
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.upload-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.upload-form input[type="file"],
+.upload-form input[type="text"],
+.upload-form input[type="number"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.upload-form .submit-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.upload-form .submit-button:hover {
+    background-color: #45a049;
+}
+ 
 .container {
     display: flex;
     flex-wrap: wrap;

@@ -66,18 +66,41 @@ html, body{
     display: inline-block;
 }
 
-.navigation ul {
-    list-style-type: none;
+.upload-form {
     display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.upload-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.navigation ul li {
-    margin-right: 10px;
+.upload-form input[type="file"],
+.upload-form input[type="text"],
+.upload-form input[type="number"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-
-.navigation ul li a {
-    text-decoration: none;
-    color: #333;
+  
+.upload-form .submit-button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.upload-form .submit-button:hover {
+    background-color: #45a049;
 }
 
 .container {
@@ -138,4 +161,86 @@ html, body{
 .saves {
     font-weight: bold;
     margin-top: 10px;
+}
+
+.add-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    background-color: rgb(148, 153, 156);
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.save-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #000000;
+    border-radius: 4px;
+    background-color: rgb(148, 153, 156);
+    color: #000000;
+    margin-top: 10px;
+}
+
+.sections {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.row a {
+    text-decoration: none;
+    color: #333;
+}
+
+.row img {
+    width: 300px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.content {
+    padding: 10px;
+}
+
+.content h3 {
+    margin-bottom: 5px;
+}
+
+.card input[type="text"],
+.card textarea {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.card .save-button {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.card .save-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.card .add-button {
+    margin-bottom: 0;
+}
+
+.card .add-button:hover {
+    background-color: #333;
+    color: #fff;
 }
