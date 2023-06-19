@@ -108,6 +108,20 @@ html, body{
     cursor: pointer;
 }
 
+.like-btn.liked {
+    background-color: #ff0000;
+    color: #ffffff;
+}
+  
+.like-btn i {
+    margin-right: 5px;
+}
+  
+.like-count {
+    margin-left: 5px;
+    font-weight: bold;
+}
+  
 .order-btn {
     background-color: #007bff;
     color: #fff;

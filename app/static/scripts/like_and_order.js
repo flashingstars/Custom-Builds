@@ -1,11 +1,27 @@
-// Add functionality to the like buttons
-let likeButtons = document.getElementsByClassName("like-btn");
-for (let i = 0; i < likeButtons.length; i++) {
-    likeButtons[i].addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function() {
+    // Add functionality to the like buttons
+    let likeButtons = document.getElementsByClassName("like-btn");
+    for (let i = 0; i < likeButtons.length; i++) {
+      let likeCount = 0; // Initial like count
+  
+      likeButtons[i].addEventListener("click", function() {
         this.classList.toggle("liked");
-    });
-}
-
+        if (this.classList.contains("liked")) {
+          likeCount++;
+        } else {
+          likeCount--;
+        }
+        updateLikeCount(this, likeCount);
+      });
+    }
+  
+    // Function to update the like count
+    function updateLikeCount(button, count) {
+      let likeCountElement = button.querySelector(".like-count");
+      likeCountElement.textContent = count;
+    }
+  });
+  
 // Add functionality to the order buttons
 let orderButtons = document.getElementsByClassName("order-btn");
 for (let i = 0;  i < orderButtons.length; i++) {
