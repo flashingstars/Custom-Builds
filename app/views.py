@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from .models import User, Admin, Photo, AdminPhoto
+from .models import Base, User, Admin, Photo, AdminPhoto
 from flask_login import login_required, LoginManager, current_user, login_user
 
 # Set a secret key for session management
@@ -15,6 +15,7 @@ app.secret_key = 'my_secret_key'
 engine = create_engine('sqlite:///custom_builds.db')
 Session = scoped_session(sessionmaker(bind=engine))
 db_session = Session
+Base.metadata.create_all(bind=engine)
 
 # Flask-Login initialization
 login_manager = LoginManager()
@@ -68,19 +69,19 @@ def login():
 		if user and check_password_hash(user.password, password):
 			flash('Login Successful')
 			login_user(user) # Log in the user
-			return redirect('whatweoffer.html')
+			return redirect('/whatweoffer.html')
 		
 		flash('Invalid email or password')
-		return redirect('login.html')
+		return redirect('/login.html')
 
 		# Authenticating if the credentials belong to admin
 		admin = db_session.query(Admin).filter_by(email=email).first()
 		if admin and check_password_hash(admin.password, password):
 			flash('Admin login succesful')
 			login_user(admin) # Log in admin 
-			return redirect('whatweoffer.html')
+			return redirect('/whatweoffer.html')
 		flash('Invalid email or password')
-		return redirect('login.html')
+		return redirect('/login.html')
 	
 	# If request is 'GET'
 	return render_template('login.html')
@@ -91,13 +92,16 @@ def signup():
 		username = request.form.get('username')
 		email = request.form.get('email')
 		password = request.form.get('password')
-		role = 'user' #Setting the role as user
+		role = Role.query.filter_by(name='user').first() # Get the user role
 
 		# Creating a new User object with the form data
-		new_user = User(username=username, email=email, password=password, role=role)
+		new_user = User(username=username, email=email,password=password)
 
-		# ash the password before storing it in the database
-		new_user.password = generate_password_hash(password)
+		# Hash the password before storing it in the database
+		new_user.set_password = generate_password_hash(password)
+
+		# Assign the role to the user
+		new_user.roles.append(role)
 
 		# Add the user to the database session
 		db_session.add(new_user)
@@ -218,7 +222,7 @@ def submit():
 	comment = request.form['comment']
 
 	# Store the comment in the database
-	conn = sqlite.connect()
+	conn = sqlite.connect(custom_builds.db)
 	c = conn.cursor()
 	c.execute("INSERT INTO review Values (?, ?, ?)", (name, email, comment))
 	conn.commit()
@@ -230,7 +234,7 @@ def submit():
 @app.route('/customer_stories')
 def customer_stories():
 	# Fetching the submitted review from the database
-	conn = sqlite.connect(DB_NAME)
+	conn = sqlite.connect(custom_builds.db)
 	c = conn.cursor()
 	c.execute("SELECT * FROM reviews")
 	reviews = c.fetchall()
