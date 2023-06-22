@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Builds</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/review.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/review.css') }}">
 </head>
 <body>
     <header>
@@ -25,7 +25,7 @@
     <div class="comment-box">
         <h2>Comment here</h2>
         <form action="#">
-            <input type="Text" name="Name" placeholder="Username...">
+            <input type="Text" name="name" placeholder="Username...">
             <input type="email" name="email" placeholder="Email address...">
             <textarea name="comment" placeholder="Type Your Comment..."></textarea>
             <button type="submit">Submit Comment</button>

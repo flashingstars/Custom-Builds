@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Builds</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/whatweoffer.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/whatweoffer.css') }}">
 </head>
 <body>
     <header>
@@ -20,9 +20,9 @@
 
                 <div class="buttons">
                     <ul>
-                        <li> <a href="customer_stories.html" class="rectangular-button"> Customer Stories </a></li>
-                        <li> <a href="#footer" class="rectangular-button"> Contact us </a></li>
-                        <li> <a href="index.html" class="rectangular-button"> Home </a></li>
+                        <li> <a href="{{ url_for('customer_stories') }}" class="rectangular-button"> Customer Stories </a></li>
+                        <li> <a href="{{ url_for('whatweoffer') }}#footer" class="rectangular-button"> Contact us </a></li>
+                        <li> <a href="{{ url_for('index') }}" class="rectangular-button"> Home </a></li>
                     </ul>
                 </div>
             </div>
@@ -32,7 +32,7 @@
     <main>
         <div class="sections">
             <div class="row">
-                <a href="../templates/On_offer.html">
+                <a href="{{ url_for('On_offer') }}">
                     <img src="../static/images/on-offer.jpg" alt="">
                     <div class="content">
                         <h3> ON OFFER </h3>
@@ -40,7 +40,7 @@
                 </a>                
             </div>
             <div class="row">
-                <a href="../templates/livingroom.html">
+                <a href="{{ url_for('livingroom') }}">
                     <img src="../static/images/Livingroom.jpg" alt="">
                     <div class="content">
                         <h3> LIVING ROOM </h3>
@@ -49,7 +49,7 @@
             </div>
 
             <div class="row">
-                <a href="../templates/dining.html">
+                <a href="{{ url_for('dining.html') }}">
                     <img src="../static/images/Dining.jpg" alt="">
                     <div class="content">
                         <h3> DINING</h3>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="row">
-                <a href="../templates/bedroom.html">
+                <a href="{{ url_for('bedroom') }}">
                     <img src="../static/images/Bedroom.jpg" alt="">
                     <div class="content">
                         <h3> BEDROOM </h3>
@@ -67,7 +67,7 @@
             </div>
 
             <div class="row">
-                <a href="../templates/outdoors.html">
+                <a href="{{ url_for('outdoors') }}">
                     <img src="../static/images/Backyard.jpg" alt="">
                     <div class="content">
                         <h3> OUTDOORS </h3>
@@ -75,7 +75,7 @@
                 </a>
             </div>
             <div class="row">
-                <a href="custom_builds.html">
+                <a href="{{ url_for('custom_builds') }}">
                     <img src="../static/images/Custom builds.jpg" alt="">
                     <div class="content">
                         <h3> CUSTOM BUILDS </h3>
@@ -98,8 +98,8 @@
             <div class="links_box">
                 <div class="footer-links">
                     <ul>
-                        <li><a href="terms.html" class="rectangular-button"> TERMS AND CONDITIONS  </a></li>
-                        <li><a href="delivery.html" class="rectangular-button"> DELIVERY AND WARRANTY </a></li>
+                        <li><a href="{{ url_for('terms') }}" class="rectangular-button"> TERMS AND CONDITIONS  </a></li>
+                        <li><a href="{{ url_for('delivery') }}" class="rectangular-button"> DELIVERY AND WARRANTY </a></li>
                     </ul>
                 </div>
             </div>

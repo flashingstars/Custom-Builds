@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Custom Builds</title>
-        <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
     </head>
     <body>
         <header>
@@ -18,21 +18,21 @@
                     <div class="dropdown" id="dropdown">
                         <button class="dropdown-toggle" id="dropdown-btn">Filter</button>
                         <div class="dropdown-content" id="dropdown-content">
-                            <a href="../templates/On_offer.html">On Offer</a>
-                            <a href="../templates/livingroom.html">Living Room</a>
-                            <a href="../templates/dining.html">Dining</a>
-                            <a href="../templates/bedroom.html">Bedroom</a>
-                            <a href="../templates/outdoors.html">Outdoors</a>
-                            <a href="../templates/custom_builds.html">Custom Builds</a>
+                            <a href="{{url_for('On_offer') }}">On Offer</a>
+                            <a href="{{ url_for('livingroom')}}">Living Room</a>
+                            <a href="{{ url_for('dining') }}">Dining</a>
+                            <a href="{{ url_for('bedroom') }}">Bedroom</a>
+                            <a href="{{ url_for('outdoors') }}">Outdoors</a>
+                            <a href="{{ url_for('custom_builds') }}">Custom Builds</a>
                         </div>
                     </div>
                     <button type="submit" class="search-button"><img src="../static/images/search.jpg" alt="Search"></button> 
                 </div>
                 <div class="navigation">
                     <ul>
-                        <li><a href="login.html" class="rectangular-button">Login/Sign up</a></li>
-                        <li><a href="whatweoffer.html" class="rectangular-button">What we offer</a></li>
-                        <li><a href="whatweoffer.html#footer" class="rectangular-button">Contact us</a></li>                  
+                        <li><a href="{{ url_for('login') }}" class="rectangular-button">Login/Sign up</a></li>
+                        <li><a href="{{ url_for('whatweoffer') }}" class="rectangular-button">What we offer</a></li>
+                        <li><a href="{{ url_for('whatweoffer')}}#footer" class="rectangular-button">Contact us</a></li>                  
                     </ul>
                 </div>
             </div>
@@ -45,6 +45,6 @@
                 </div>
             </div>
         </main>
-        <script src="../static/scripts/search.js"></script>
+        <script src="{{ url_for('static', filename='scripts/search.js') }}"></script>
     </body>
 </html>

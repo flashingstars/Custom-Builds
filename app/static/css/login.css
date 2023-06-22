@@ -100,7 +100,7 @@
     padding: 10px;
 }
 
-.inputbox input[type="text"],
+.inputbox input[type="email"],
 .inputbox input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -111,6 +111,21 @@
     color: #8f2c24;
     font-size: 17px;
 }
+
+#login-btn{
+    border: none;
+    outline: none;
+    color: rgb(255, 250, 250);
+    background-color: #58100a;
+    font-size: 1.75em;
+    font-weight: 500;
+    transition: 0.5s;
+    cursor: pointer;
+}
+#login-btn:hover{
+    background-color: #d64c43;
+}
+
 #btn{
     border: none;
     outline: none;

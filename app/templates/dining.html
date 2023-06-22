@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Builds</title>
-  <link rel="stylesheet" type="text/css" href="../static/css/dining.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dining.css')}}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
@@ -21,15 +21,16 @@
         </div>
         <div class="buttons">
           <ul>
-            <li><a href="customer_stories.html" class="rectangular-button">Customer Stories</a></li>
-            <li><a href="whatweoffer.html#footer" class="rectangular-button">Contact us</a></li>
-            <li><a href="whatweoffer.html" class="rectangular-button">Back</a></li>
+            <li><a href="{{ url_for('customer_stories') }}" class="rectangular-button">Customer Stories</a></li>
+            <li><a href="{{ url_for('whatweoffer') }}#footer" class="rectangular-button">Contact us</a></li>
+            <li><a href="{{ url_for('whatweoffer') }}" class="rectangular-button">Back</a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
   <main>
+    {% if not hide_form %}
     <form action="/add_photo" method="POST" enctype="multipart/form-data" class="upload-form">
       <label for="photo"> Photo: </label>
       <input type="file" name="photo" id="photo" accept="image/*" required>
@@ -45,6 +46,7 @@
 
       <input type="submit" value="Upload">
   </form>
+  {% endif %}
   
     <div class="container">
       <div class="card">

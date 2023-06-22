@@ -5,7 +5,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-from .models import Base, User, Admin, Photo, AdminPhoto
+from .models import Base, User, Admin, Photo, AdminPhoto, Role
 from flask_login import login_required, LoginManager, current_user, login_user
 
 # Set a secret key for session management
@@ -28,12 +28,12 @@ login_manager.login_view = 'login'
 @login_manager.user_loader
 def load_user(user_id):
     #Load the user object based on the user ID
-    return User.query.get(int(user_id))
+    return db_session.query(User).filter_by(id=user_id).first()
 
-@login_manager.user_loader
-def load_admin(admin_id):
-	# Load the Admin object based on the admin ID
-	return Admin.query.get(int(admin_id))
+# @login_manager.user_loader
+# def load_admin(admin_id):
+# 	# Load the Admin object based on the admin ID
+# 	return Admin.query.get(int(admin_id))
 
 # Define the request_loader function and register it with Flask-Login
 @login_manager.request_loader
@@ -57,32 +57,75 @@ def load_admin_from_request(request):
 def home():
 	return render_template('index.html')
 
+@app.route('/create_admin', methods=['GET', 'POST'])
+def create_admin():
+	if request.method == 'POST':
+		username = request.form.get('username')
+		email = request.form.get('email')
+		password = request.form.get('password')
+		#role = Role.query.filter_by(name='admin').first() # Get the admin role
+		role = Role(id=12, name='admin')
+
+		# Creating a new Admin object with the form data
+		if username != '' and email != '' and password is not None:
+			new_user = User(username=username, email=email, password=password)
+
+			# Hash the password before storing it in the database
+			new_user.set_password = generate_password_hash(password)
+
+			# Assign the role to the user
+			new_user.roles.append(role)
+
+			# Add the user to the database session
+			db_session.add(new_user)
+			db_session.commit()
+
+			flash('Signup successful')
+
+			return redirect('/whatweoffer')
+		
+		else:
+			flash('Invalid input')
+			
+
+	# Render the sign up form for GET request
+	return render_template('create_admin.html')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST':
+		#Converting request to python dictionary
+		data = request.get_json()
 		# Handle login form submission
-		email = request.form['email']
-		password = request.form['password']
-
+		email = data['email']
+		password = data['password']
+		print(data)
+		if not email or not password:
+			flash('Invalid email or password')
+			return redirect('/login')
 		# Authenticating if the credentials belong to a user
 		user = db_session.query(User).filter_by(email=email).first()
+		print (user)
 		if user and check_password_hash(user.password, password):
+			setattr(user, 'is_authenticated', True)
 			flash('Login Successful')
 			login_user(user) # Log in the user
-			return redirect('/whatweoffer.html')
+			return redirect(url_for('whatweoffer'))
 		
 		flash('Invalid email or password')
-		return redirect('/login.html')
+		return redirect('/login')
 
-		# Authenticating if the credentials belong to admin
-		admin = db_session.query(Admin).filter_by(email=email).first()
-		if admin and check_password_hash(admin.password, password):
-			flash('Admin login succesful')
-			login_user(admin) # Log in admin 
-			return redirect('/whatweoffer.html')
-		flash('Invalid email or password')
-		return redirect('/login.html')
+		# # Authenticating if the credentials belong to admin
+		# admin = db_session.query(Admin).filter_by(email=email).first()
+		# if admin and check_password_hash(admin.password, password):
+		# 	flash('Admin login succesful')
+		# 	login_user(admin) # Log in admin 
+		# 	return redirect('/whatweoffer')
+		
+		# flash('Invalid email or password')
+		# return redirect('/login')
 	
+	print ('anything')
 	# If request is 'GET'
 	return render_template('login.html')
 
@@ -92,26 +135,29 @@ def signup():
 		username = request.form.get('username')
 		email = request.form.get('email')
 		password = request.form.get('password')
-		role = Role.query.filter_by(name='user').first() # Get the user role
-
+		#role = db_session.query(Role).filter_by(name='user').first() # Get the user role
+		role = db_session.query(Role).get(2)
+		print (role)
 		# Creating a new User object with the form data
-		new_user = User(username=username, email=email,password=password)
+		if username != '' and email != '' and password is not None:
+			new_user = User(username=username, email=email, password=password, role=role)
 
-		# Hash the password before storing it in the database
-		new_user.set_password = generate_password_hash(password)
+			# Hash the password before storing it in the database
+			new_user.password = generate_password_hash(password)
 
-		# Assign the role to the user
-		new_user.roles.append(role)
+			# Add the user to the database session
+			db_session.add(new_user)
+			db_session.commit()
 
-		# Add the user to the database session
-		db_session.add(new_user)
-		db_session.commit()
+			flash('Signup successful')
 
-		flash('Signup successful')
+			return redirect('/whatweoffer')
+		
+		else:
+			flash('Invalid input')
+			
 
-		return redirect('/whatweoffer.html')
-	
-	# Render the login form for GET request
+	# Render the sign up form for GET request
 	return render_template('signup.html')
 
 @app.route('/whatweoffer')
@@ -131,13 +177,14 @@ def add_photo():
 		heading = request.form.get('heading')
 		description = request.form.get('description')
 		price = float(request.form.get('price'))
+		amount_saved = float(request.form.get('amount_saved'))
 
 		# Save the photo file to the upload folder
 		filename = secure_filename(photo_file.filename)
 		photo_file.save(os.path.join(UPLOAD_FOLDER, filename))
 
 		# Create a new Photo object and save it to the database
-		photo = Photo(name=filename, description=description, price=price)
+		photo = Photo(name=filename, description=description, price=price, amount_saved=amount_saved)
 		session.add(photo)
 		session.commit()
 
@@ -163,61 +210,82 @@ def add_photo():
 
 		# Redirecting to the section page
 		if section == 'On_offer':
-			return redirect('/On_offer.html')
+			return redirect('/On_offer')
 		elif section == "livingroom":
-			return redirect('/livingroom.html')
+			return redirect('/livingroom')
 		elif section == "dining":
-			return redirect('/dining.html')
+			return redirect('/dining')
 		elif section == "bedroom":
-			return redirect('bedroom.html')
+			return redirect('bedroom')
 		elif section == "outdoors":
-			return redirect('/outdoors.html')
+			return redirect('/outdoors')
 	else:
 		flash('You are not authorized to perform this action')
-		return redirect('/whatweoffer.html')
+		return redirect('/whatweoffer')
 	
 @app.route('/On_offer')
+@login_required
 def On_offer():
 	photos = AdminPhoto.query.join(Photo).filter_by(id=AdminPhoto.photo_id).all()
-	return render_template('On_offer.html', photos=photos)
+	hide_form = False
+	if not current_user.is_admin:
+		hide_form = True
+	return render_template('On_offer.html', photos=photos, hide_form=hide_form)
 
 @app.route('/livingroom')
+@login_required
 def livingroom():
 	photos = AdminPhoto.query.join(Photo).filter_by(id=AdminPhoto.photo_id).all()
-	return render_template('livingroom.html', photos=photos)
+	hide_form = False
+	if not current_user.is_admin:
+		hide_form = True
+	return render_template('livingroom.html', photos=photos, hide_form=hide_form)
 
 @app.route('/dining')
+@login_required
 def dining():
 	photos = AdminPhoto.query.join(Photo).filter_by(id=AdminPhoto.photo_id).all()
-	return render_template('dining.html', photos=photos)
+	hide_form = False
+	if not current_user.is_admin:
+		hide_form = True
+	return render_template('dining.html', photos=photos, hide_form=hide_form)
 
 @app.route('/bedroom')
+@login_required
 def bedroom():
 	photos = AdminPhoto.query.join(Photo).filter_by(id=AdminPhoto.photo_id).all()
-	return render_template('bedroom.html', photos=photos)
+	hide_form = False
+	if not current_user.is_admin:
+		hide_form = True
+	return render_template('bedroom.html', photos=photos, hide_form=hide_form)
 
 @app.route('/outdoors')
+@login_required
 def outdoors():
 	photos = AdminPhoto.query.join(Photo).filter_by(id=AdminPhoto.photo_id).all()
-	return render_template('outdoors.html', photos=photos)
+	hide_form = False
+	if not current_user.is_admin:
+		hide_form = True
+	return render_template('outdoors.html', photos=photos, hide_form=hide_form)
 
 @app.route('/contact_us')
-@login_required
 def contact_us():
 	return render_template('whatweoffer.html')
 
 @app.route('/custom_builds')
+@login_required
 def custom_builds():
 	return render_template('custom_builds.html')
 
 @app.route('/review')
+@login_required
 def review():
 	return render_template('review.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
 	# Retrieve form data
-	name = request.form['username']
+	name = request.form['name']
 	email = request.form['email']
 	comment = request.form['comment']
 
@@ -229,7 +297,7 @@ def submit():
 	conn.close()
 
 	#redirect to customer stories page
-	return redirect('/customer_stories.html')
+	return redirect('/customer_stories')
 
 @app.route('/customer_stories')
 def customer_stories():
@@ -241,3 +309,11 @@ def customer_stories():
 	conn.close()
 
 	return render_template('customer_stories.html', reviews=reviews)
+
+@app.route('/terms')
+def terms():
+	return render_template('terms.html')
+
+@app.route('/delivery')
+def delivery():
+	return render_template('delivery.html')

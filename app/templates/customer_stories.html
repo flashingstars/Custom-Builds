@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Builds</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/customer_stories.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/customer_stories.css') }}">
 </head>
 <body>
     <header>
@@ -21,8 +21,8 @@
             </div>
             <div class="navigation">
                 <ul>
-                    <li><a href="index.html" class="rectangular-button"> Home </a></li>
-                    <li><a href="whatweoffer.html" class="rectangular-button"> What we offer </a></li>
+                    <li><a href="{{ url_for('index') }}" class="rectangular-button"> Home </a></li>
+                    <li><a href="{{ url_for('whatweoffer') }}" class="rectangular-button"> What we offer </a></li>
                 </ul>
             </div>
         </div>

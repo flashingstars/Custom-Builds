@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Login/Sign up</title>
-        <link rel="stylesheet" href="../static/css/login.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
     </head>
     <body>
         <header>
@@ -14,7 +14,7 @@
                     <img src="../static/images/logo.PNG" alt="Custom Builds">
                 </div>
                 <div class="title">
-                        <h1> Log in /Sign Up </h1>
+                        <h1> Log in / Sign Up </h1>
                 </div>
         </header>
 
@@ -24,20 +24,20 @@
                     <h1> Login</h1>
 
                     <div class="inputbox">
-                        <div class="username_text">
-                            <h4> Username or email address *<h4>
+                        <div class="email_text">
+                            <h4> Email address *<h4>
                         </div>
-                        <input type="text" required>
+                        <input type="email" id="email" required>
                     </div>
-                    <div class="inputbox">
+                    <div class="inputbox" >
                         <div class="password-text">
                             <h4>Password *<h4>
                         </div>
-                        <input type="password" required>
+                        <input type="password" id="password" required>
                     </div>
                     <br>
                     <div class="inputbox">
-                        <input type="submit" value="Login" id="btn" required>
+                        <input type="submit" value="Login" id="login-btn" required>
                     </div>
                     <br>
                 </div>
@@ -47,10 +47,11 @@
         <div class="sign-upForm">
             <div class="sign-up">
                 <h2> <b> REGISTER </b> </h2>
-                <h3> DON'T HAVE AN ACCOUNT? CREATE ONE HERE</h3>
-                <input type="submit" value="Sign Up" id="btn" onclick="window.location.href='signup.html'">
+                <h3> DONT HAVE AN ACCOUNT? CREATE ONE HERE </h3>
+                <input type="submit" value="Sign Up" id="btn">
             </div>
         </div>
     </main>
+    <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
     </body>
 </html>

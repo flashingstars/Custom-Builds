@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Custom Builds</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/custom_builds.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom_builds.css') }}">
 </head>
 <body>
     <header>
@@ -20,8 +20,8 @@
             </div>
             <div class="navigation">
                 <ul>
-                    <li><a href="index.html" class="rectangular-button primary-button"> Home </a></li>
-                    <li><a href="whatweoffer.html" class="rectangular-button primary-button"> Back </a></li>
+                    <li><a href="{{ url_for('index') }}" class="rectangular-button primary-button"> Home </a></li>
+                    <li><a href="{{ url_for('whatweoffer') }}" class="rectangular-button primary-button"> Back </a></li>
                 </ul>
             </div>
         </div>
@@ -108,7 +108,7 @@
                 <img src="../static/images/mpesa logo.jpeg" alt="mpesa">
             </div>
         </div>
-        <a href="../templates/review.html" class="round-button secondary_button"> Tell your story </a>  
+        <a href="{{ url_for('review') }}" class="round-button secondary_button"> Tell your story </a>  
     </main>
 </body>
 </html>
